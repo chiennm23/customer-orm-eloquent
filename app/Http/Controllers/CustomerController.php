@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Customer;
+use App\Http\Requests\FormValidationRequest;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -21,7 +22,7 @@ class CustomerController extends Controller
         return view('/customers.create', compact('citys'));
     }
 
-    public function store(Request $request)
+    public function store(FormValidationRequest $request)
     {
         $customer = new Customer();
         $customer->name = $request->name;
@@ -76,4 +77,5 @@ class CustomerController extends Controller
         $citys = City::all();
         return view('customers.list', compact('customers', 'citys'));
     }
+
 }
